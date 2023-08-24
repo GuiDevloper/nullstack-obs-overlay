@@ -1,0 +1,19 @@
+.tasks {
+  .title {
+    font-size: 4rem;
+  }
+
+  .list {
+    margin-top: 1.5rem;
+
+    li {
+      font-size: 3rem;
+      margin: 1rem 0;
+      cursor: pointer;
+
+      &.done {
+        text-decoration: line-through;
+      }
+    }
+  }
+}
