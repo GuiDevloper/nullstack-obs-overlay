@@ -1,9 +1,9 @@
 import './Application.scss'
 import Nullstack, { NullstackNode } from 'nullstack'
 
+import Home from './Home'
 import Manage from './Manage'
-import NinjaMode from './NinjaMode'
-import Tasks from './Tasks'
+import WebSocket from './WebSocket'
 
 declare function Head(): NullstackNode
 
@@ -25,10 +25,8 @@ class Application extends Nullstack {
     return (
       <main class="overlay">
         <Head />
-        <div route="/">
-          <NinjaMode />
-          <Tasks />
-        </div>
+        <WebSocket key="websocket" />
+        <Home route="/" />
         <Manage route="/manage" />
       </main>
     )
