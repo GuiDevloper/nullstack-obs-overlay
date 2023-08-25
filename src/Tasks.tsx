@@ -18,19 +18,27 @@ class Tasks extends Nullstack {
     return JSON.parse(readFileSync(tasksFilePath, 'utf8'))
   }
 
-  static async setTaskDone({ taskId }: { taskId: number }) {
+  static async toogleTaskDone({ taskId }: { taskId: number }) {
     const tasks = await Tasks.getTasks()
-    tasks.splice(taskId, 1, { ...tasks[taskId], done: true })
+    tasks.splice(taskId, 1, { ...tasks[taskId], done: !tasks[taskId].done })
     writeFileSync(tasksFilePath, JSON.stringify(tasks, null, '  '))
   }
 
-  async hydrate() {
+  static async createTask({ task }: { task: string }) {
+    const tasks = await Tasks.getTasks()
+    tasks.push({ task, done: false })
+    writeFileSync(tasksFilePath, JSON.stringify(tasks, null, '  '))
+  }
+
+  hydrate = this.loadTasks
+
+  async loadTasks() {
     this.tasks = await Tasks.getTasks()
   }
 
   async doneTask({ taskId }: { taskId: number }) {
-    await Tasks.setTaskDone({ taskId })
-    this.hydrate()
+    await Tasks.toogleTaskDone({ taskId })
+    await this.loadTasks()
   }
 
   render() {

@@ -1,6 +1,7 @@
 import './Application.scss'
 import Nullstack, { NullstackNode } from 'nullstack'
 
+import Manage from './Manage'
 import NinjaMode from './NinjaMode'
 import Tasks from './Tasks'
 
@@ -24,8 +25,11 @@ class Application extends Nullstack {
     return (
       <main class="overlay">
         <Head />
-        <NinjaMode />
-        <Tasks />
+        <div route="/">
+          <NinjaMode />
+          <Tasks />
+        </div>
+        <Manage route="/manage" />
       </main>
     )
   }
