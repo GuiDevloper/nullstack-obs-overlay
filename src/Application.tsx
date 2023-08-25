@@ -1,9 +1,9 @@
 import './Application.scss'
 import Nullstack, { NullstackNode } from 'nullstack'
 
+import WebSocket from './components/WebSocket'
 import Home from './Home'
 import Manage from './Manage'
-import WebSocket from './WebSocket'
 
 declare function Head(): NullstackNode
 

@@ -3,7 +3,7 @@ import Nullstack from 'nullstack'
 
 import { readFileSync, writeFileSync } from 'fs'
 
-const ninjaFilePath = './src/ninja.json'
+const ninjaFilePath = './src/data/ninja.json'
 
 class NinjaMode extends Nullstack {
 

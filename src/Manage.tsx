@@ -1,8 +1,8 @@
 import './Manage.scss'
 import Nullstack, { NullstackClientContext } from 'nullstack'
 
+import Tasks from './components/Tasks'
 import Home from './Home'
-import Tasks from './Tasks'
 
 class Manage extends Nullstack {
 

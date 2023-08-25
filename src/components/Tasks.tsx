@@ -3,7 +3,7 @@ import Nullstack from 'nullstack'
 
 import { readFileSync, writeFileSync } from 'fs'
 
-const tasksFilePath = './src/tasks.json'
+const tasksFilePath = './src/data/tasks.json'
 
 type Task = {
   task: string

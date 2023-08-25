@@ -1,7 +1,7 @@
 import Nullstack from 'nullstack'
 
-import NinjaMode from './NinjaMode'
-import Tasks from './Tasks'
+import NinjaMode from './components/NinjaMode'
+import Tasks from './components/Tasks'
 
 class Home extends Nullstack {
 
