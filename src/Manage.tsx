@@ -1,6 +1,7 @@
 import './Manage.scss'
 import Nullstack, { NullstackClientContext } from 'nullstack'
 
+import NinjaMode from './NinjaMode'
 import Tasks from './Tasks'
 
 class Manage extends Nullstack {
@@ -10,6 +11,13 @@ class Manage extends Nullstack {
   async addTask({ instances }: NullstackClientContext) {
     await Tasks.createTask({ task: this.newTask })
     await (instances.tasks as { loadTasks(): Promise<void> }).loadTasks()
+  }
+
+  async toogleNinja({ instances }: NullstackClientContext) {
+    await NinjaMode.toogleNinjaMode()
+    await (
+      instances.ninja as { loadNinjaMode(): Promise<void> }
+    ).loadNinjaMode()
   }
 
   render() {
@@ -25,6 +33,8 @@ class Manage extends Nullstack {
           />
           <button>Add Task</button>
         </form>
+        <button onclick={this.toogleNinja}>Toogle Ninja Mode</button>
+        <NinjaMode key="ninja" />
         <Tasks key="tasks" />
       </section>
     )

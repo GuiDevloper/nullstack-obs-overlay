@@ -1,6 +1,10 @@
 [
   {
-    "task": "Configure tasks overlay!",
+    "task": "Configure tasks overlay",
+    "done": true
+  },
+  {
+    "task": "Configure route to manage tasks",
     "done": true
   },
   {

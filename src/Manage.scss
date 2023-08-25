@@ -1,6 +1,18 @@
 .manage {
   min-height: 100vh;
 
+  .ninja {
+    margin: 0;
+
+    img {
+      display: none;
+    }
+
+    .title {
+      font-size: 2rem;
+    }
+  }
+
   .tasks {
     margin-top: 2rem;
 
