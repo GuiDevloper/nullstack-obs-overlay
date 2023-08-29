@@ -25,6 +25,10 @@
 
       li {
         font-size: 1rem;
+
+        &.done {
+          text-decoration-thickness: 1px;
+        }
       }
     }
   }

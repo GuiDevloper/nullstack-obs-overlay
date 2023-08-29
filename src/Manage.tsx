@@ -16,20 +16,29 @@ class Manage extends Nullstack {
     instances.websocket.socket.emit('toogle-ninja')
   }
 
+  prepare({ page }: NullstackClientContext) {
+    page.title = 'Manage Overlay'
+  }
+
   render() {
     return (
       <section class="manage">
         <h1>Manage</h1>
+        <button
+          onclick={this.toogleNinja}
+          tabindex="1"
+        >
+          Toogle Ninja Mode
+        </button>
         <form onsubmit={this.addTask}>
           <input
             type="text"
             bind={this.newTask}
             placeholder="New Task"
             required
+            tabindex="1"
           />
-          <button>Add Task</button>
         </form>
-        <button onclick={this.toogleNinja}>Toogle Ninja Mode</button>
         <Home />
       </section>
     )
