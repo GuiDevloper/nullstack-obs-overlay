@@ -12,7 +12,10 @@ class Application extends Nullstack {
   renderHead() {
     return (
       <head>
-        <link href="https://fonts.gstatic.com" rel="preconnect" />
+        <link
+          href="https://fonts.gstatic.com"
+          rel="preconnect"
+        />
         <link
           href="https://fonts.googleapis.com/css2?family=Crete+Round&display=swap"
           rel="stylesheet"

@@ -1,6 +1,6 @@
 import Nullstack, {
   NullstackClientContext,
-  NullstackServerContext,
+  NullstackServerContext
 } from 'nullstack'
 
 import { Server } from 'socket.io'
@@ -21,9 +21,9 @@ class WebSocket extends Nullstack {
 
     const WSPort = await WebSocket.getWSPort()
     const ws = new Server(WSPort, {
-      cors: { origin: '*' },
+      cors: { origin: '*' }
     })
-    ws.on('connection', async (socket) => {
+    ws.on('connection', async socket => {
       // eslint-disable-next-line no-console
       console.log(`new connection: ${socket.id}`)
 
