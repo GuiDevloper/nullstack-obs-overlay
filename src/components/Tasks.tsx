@@ -3,6 +3,8 @@ import Nullstack from 'nullstack'
 
 import { readFileSync, writeFileSync } from 'fs'
 
+import WebSocket from './WebSocket'
+
 const tasksFilePath = './src/data/tasks.json'
 
 type Task = {
@@ -13,21 +15,29 @@ type Task = {
 class Tasks extends Nullstack {
 
   tasks: Task[] = []
+  static tasks: Task[] = []
 
   static async getTasks(): Promise<Task[]> {
-    return JSON.parse(readFileSync(tasksFilePath, 'utf8'))
+    Tasks.tasks = JSON.parse(readFileSync(tasksFilePath, 'utf8'))
+    return Tasks.tasks
+  }
+
+  static async saveTasks() {
+    writeFileSync(tasksFilePath, JSON.stringify(Tasks.tasks, null, '  '))
+    WebSocket.io.emit('reload-tasks')
   }
 
   static async toogleTaskDone({ taskId }: { taskId: number }) {
-    const tasks = await Tasks.getTasks()
-    tasks.splice(taskId, 1, { ...tasks[taskId], done: !tasks[taskId].done })
-    writeFileSync(tasksFilePath, JSON.stringify(tasks, null, '  '))
+    Tasks.tasks.splice(taskId, 1, {
+      ...Tasks.tasks[taskId],
+      done: !Tasks.tasks[taskId].done
+    })
+    await Tasks.saveTasks()
   }
 
   static async createTask({ task }: { task: string }) {
-    const tasks = await Tasks.getTasks()
-    tasks.push({ task, done: false })
-    writeFileSync(tasksFilePath, JSON.stringify(tasks, null, '  '))
+    Tasks.tasks.push({ task, done: false })
+    await Tasks.saveTasks()
   }
 
   hydrate = this.loadTasks
@@ -38,7 +48,6 @@ class Tasks extends Nullstack {
 
   async doneTask({ taskId }: { taskId: number }) {
     await Tasks.toogleTaskDone({ taskId })
-    await this.loadTasks()
   }
 
   render() {
@@ -48,7 +57,6 @@ class Tasks extends Nullstack {
         <ul class="list">
           {this.tasks.map((task, taskId) => (
             <li
-              key={taskId}
               class={task.done && 'done'}
               onclick={() => this.doneTask({ taskId })}
             >

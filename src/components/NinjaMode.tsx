@@ -8,14 +8,23 @@ const ninjaFilePath = './src/data/ninja.json'
 class NinjaMode extends Nullstack {
 
   isNinja: boolean
+  static isNinja: boolean
+
   static async getNinjaMode(): Promise<boolean> {
-    return JSON.parse(readFileSync(ninjaFilePath, 'utf8')).isNinja
+    NinjaMode.isNinja = JSON.parse(readFileSync(ninjaFilePath, 'utf8')).isNinja
+    return NinjaMode.isNinja
+  }
+
+  static async saveNinjaMode() {
+    writeFileSync(
+      ninjaFilePath,
+      JSON.stringify({ isNinja: NinjaMode.isNinja }, null, '  ')
+    )
   }
 
   static async toogleNinjaMode() {
-    const isNinja = await NinjaMode.getNinjaMode()
-    const json = { isNinja: !isNinja }
-    writeFileSync(ninjaFilePath, JSON.stringify(json, null, '  '))
+    NinjaMode.isNinja = !NinjaMode.isNinja
+    await NinjaMode.saveNinjaMode()
   }
 
   async loadNinjaMode() {

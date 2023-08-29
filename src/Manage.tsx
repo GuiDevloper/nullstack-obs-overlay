@@ -8,9 +8,8 @@ class Manage extends Nullstack {
 
   newTask: string
 
-  async addTask({ instances }: NullstackClientContext) {
+  async addTask() {
     await Tasks.createTask({ task: this.newTask })
-    await instances.tasks.loadTasks()
   }
 
   async toogleNinja({ instances }: NullstackClientContext) {

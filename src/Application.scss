@@ -7,10 +7,12 @@
 body {
   color: #f15d9f;
   font-family: 'Crete Round', sans-serif;
+  overflow: hidden;
 }
 
 .overlay {
   /* height: 100vh; */
   background-color: rgba(17, 24, 39, 0.8);
   padding: 20px;
+  padding-top: 15px;
 }
